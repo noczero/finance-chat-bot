@@ -1,48 +1,25 @@
-# FastAPI 및 웹 프레임워크
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-python-jose[cryptography]==3.3.0
-
-# PDF 처리
+fastapi==0.115.9
+uvicorn[standard]==0.34.3
+python-multipart==0.0.20
+python-jose[cryptography]==3.5.0
 PyPDF2==3.0.1
-pdfplumber==0.10.0
-pymupdf==1.23.26  # fitz
-
-# RAG 및 AI 관련
-langchain==0.1.0
-langchain-openai==0.0.2
-langchain-community==0.0.10
-openai==1.6.1
-tiktoken==0.5.2
-
-# 벡터 데이터베이스
-chromadb==0.4.18
-faiss-cpu==1.7.4
-
-# 임베딩 및 텍스트 처리
-sentence-transformers==2.2.2
-transformers==4.36.2
-torch==2.1.2
-
-# 데이터 처리
-numpy==1.24.4
-pandas==2.1.4
-
-# 환경 변수 및 설정
-python-dotenv==1.0.0
-pydantic==2.5.2
-pydantic-settings==2.1.0
-
-# 유틸리티
-requests==2.31.0
-aiofiles==23.2.0
-tqdm==4.66.1
-
-# 로깅 및 모니터링
-loguru==0.7.2
-
-# 테스트 (선택사항)
-pytest==7.4.3
-pytest-asyncio==0.21.1
-httpx==0.25.2 
+pdfplumber==0.11.7
+langchain==0.3.25
+langchain-openai==0.3.23
+langchain-community==0.3.25
+langchain-chroma==0.2.4
+openai==1.86.0
+tiktoken==0.9.0
+chromadb==1.0.12
+libquadmath==2.3.0
+pandas==2.3.0
+python-dotenv==1.1.0
+pydantic==2.11.7
+pydantic-settings==2.9.1
+requests==2.32.4
+aiofiles==24.1.0
+tqdm==4.67.1
+loguru==0.7.3
+pytest==8.4.0
+pytest-asyncio==1.0.0
+httpx==0.28.1

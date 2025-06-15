@@ -12,28 +12,68 @@ logger = logging.getLogger(__name__)
 
 class PDFProcessor:
     def __init__(self):
-        # TODO: Initialize text splitter with chunk size and overlap settings
-        pass
+        """Initialize text splitter with chunk size and overlap settings"""
+        self.text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=settings.chunk_size,
+            chunk_overlap=settings.chunk_overlap,
+            length_function=len,
+            separators=["\n\n", "\n", " ", ""]
+        )
     
     def extract_text_from_pdf(self, file_path: str) -> List[Dict[str, Any]]:
         """Extract text from PDF and return page-wise content"""
-        # TODO: Implement PDF text extraction
-        # - Use pdfplumber or PyPDF2 to extract text from each page
-        # - Return list of dictionaries with page content and metadata
-        pass
+        try:
+            pages_content = []
+            with pdfplumber.open(file_path) as pdf:
+                for page_num, page in enumerate(pdf.pages, 1):
+                    text = page.extract_text()
+                    if text:
+                        pages_content.append({
+                            "page_number": page_num,
+                            "content": text,
+                            "metadata": {
+                                "source": os.path.basename(file_path),
+                                "page": page_num
+                            }
+                        })
+            return pages_content
+        except Exception as e:
+            logger.error(f"Error extracting text from PDF: {str(e)}")
+            raise
     
     def split_into_chunks(self, pages_content: List[Dict[str, Any]]) -> List[Document]:
         """Split page content into chunks"""
-        # TODO: Implement text chunking
-        # - Split each page content into smaller chunks
-        # - Create Document objects with proper metadata
-        # - Return list of Document objects
-        pass
+        try:
+            documents = []
+            for page in pages_content:
+                chunks = self.text_splitter.split_text(page["content"])
+                for chunk in chunks:
+                    doc = Document(
+                        page_content=chunk,
+                        metadata={
+                            "source": page["metadata"]["source"],
+                            "page": page["metadata"]["page"]
+                        }
+                    )
+                    documents.append(doc)
+            return documents
+        except Exception as e:
+            logger.error(f"Error splitting text into chunks: {str(e)}")
+            raise
     
     def process_pdf(self, file_path: str) -> List[Document]:
         """Process PDF file and return list of Document objects"""
-        # TODO: Implement complete PDF processing pipeline
-        # 1. Extract text from PDF
-        # 2. Split text into chunks
-        # 3. Return processed documents
-        pass 
+        try:
+            # Extract text from PDF
+            pages_content = self.extract_text_from_pdf(file_path)
+            
+            # Split text into chunks
+            documents = self.split_into_chunks(pages_content)
+            
+            logger.info(f"Successfully processed PDF: {file_path}")
+            logger.info(f"Generated {len(documents)} chunks from {len(pages_content)} pages")
+            
+            return documents
+        except Exception as e:
+            logger.error(f"Error processing PDF: {str(e)}")
+            raise 
