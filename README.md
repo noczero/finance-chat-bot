@@ -86,6 +86,9 @@ npm install
 
 # API Specification
 
+It's available on http://localhost:8000/docs
+<img width="1912" alt="Screenshot 2025-06-17 at 00 33 11" src="https://github.com/user-attachments/assets/87280bce-ff7c-4e81-89f1-3a5e8f51e7df" />
+
 ## Endpoints
 
 The API endpoints are grouped by functionality: Chats, Documents, and Conversations.
