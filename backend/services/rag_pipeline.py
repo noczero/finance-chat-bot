@@ -40,8 +40,7 @@ class RAGPipeline:
                     2. Synthesize information from across the document to provide a comprehensive overview of the requested topic (e.g., a policy, a committee's function, or a specific event).
                     3. Use bullet points to structure your answer for clarity where appropriate.
                     4. At the end of your summary, provide a list of all source numbers used in the format: `References:`.
-                    5. If the context does not contain enough information to form a summary, state: "The provided context does not contain sufficient information to summarize this topic."
-                    6. In <context>, each document consists of a page number, chunk content, and followed by metadata. Split by double newline separator.
+                    5. In <context>, each document consists of a page number, chunk content, and followed by metadata. Split by double newline separator.
                     </instructions>
                     
                     <context>
