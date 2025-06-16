@@ -3,6 +3,10 @@
 A full-stack application that uses RAG (Retrieval Augmented Generation) technology to answer questions about financial statements. 
 The system uses OpenAI's GPT model for text generation and ChromaDB for vector storage.
 
+
+https://github.com/user-attachments/assets/364bebc8-cfba-4b00-ab09-c2a254451a08
+
+
 ## Features
 - Clean web interface with Next.js
 - FastAPI backend with async support
