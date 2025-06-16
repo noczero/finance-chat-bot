@@ -4,8 +4,8 @@ from datetime import datetime
 
 
 class ChatRequest(BaseModel):
+    conversation_token: Optional[str] = ""
     question: str
-    chat_history: Optional[List[Dict[str, str]]] = []
 
 
 class DocumentSource(BaseModel):
@@ -19,6 +19,8 @@ class ChatResponse(BaseModel):
     answer: str
     sources: List[DocumentSource]
     processing_time: float
+    conversation_token: str
+    created_at: datetime
 
 
 class DocumentInfo(BaseModel):
@@ -48,4 +50,34 @@ class ChunkInfo(BaseModel):
 
 class ChunksResponse(BaseModel):
     chunks: List[ChunkInfo]
-    total_count: int 
+    total_count: int
+
+
+class MessageSchema(BaseModel):
+    id: int
+    conversation_token: str
+    role: str
+    content: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
+
+class MessagesResponse(BaseModel):
+    messages: List[MessageSchema]
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
+
+class ConversationSchema(BaseModel):
+    token: str
+    name: str
+    messages: List[MessageSchema]  # Assuming MessageSchema is already defined
+
+    class Config:
+        orm_mode = True
+        from_attributes = True

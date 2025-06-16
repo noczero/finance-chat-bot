@@ -23,3 +23,4 @@ loguru==0.7.3
 pytest==8.4.0
 pytest-asyncio==1.0.0
 httpx==0.28.1
+SQLAlchemy~=2.0.41
